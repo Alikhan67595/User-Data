@@ -61,3 +61,13 @@
     opacity: 100%;
 
 }
+
+@media screen and (max-width:768px){
+    #mainData{
+        width: 95%;
+        /* height:; */
+        background-color: #fff;
+
+    }
+    
+}
