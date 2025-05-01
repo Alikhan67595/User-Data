@@ -533,21 +533,34 @@ for (var i = 0; i < data.length; i++) { //loop run karay ga gitna array ki lengt
         }
     };//
 
-    for (key in data[i]) { // object mai sai id extract karta hai
-        if (key === 'id') {
-            var cardId = data[i][key]
-            var cardIds = data[i][key]
-        }};//
-        
-        card.id = cardId // ID assigned kar raha hai div ko
-        
-        var cardIdUniq = cardIds-1
-        
-        card.addEventListener('click', function () {
+    card.id = data[i].id // id Assigned kar raha hai div ko
 
-            divInfo.innerHTML = ''  // clear karta hai previous data
 
-       
+    card.addEventListener('click', function (e) {
+        var id = e.target.id
+        var obj = data[id - 1] // array kai liay index number generate kar raha hai
+
+
+        divInfo.innerHTML = ''  // clear karta hai previous data
+
+
+        for(key in obj){
+            if(typeof obj[key] === 'object'){
+               for(key2 in obj[key]){
+                if(typeof obj[key][key2] === 'object'){
+                    for(key3 in obj[key][key2]){
+                        divInfo.innerHTML += key3.toUpperCase() + "  :  "+ obj[key][key2][key3]
+                    }
+                }
+                else{divInfo.innerHTML += key2.toUpperCase() + "  :  "+ obj[key][key2]
+            divInfo.innerHTML += `<br/>`}
+               }
+            }
+            else{divInfo.innerHTML += key.toUpperCase() + "  :  "+ obj[key]
+            divInfo.innerHTML += `<br/>`}
+
+        }
+
 
         mainbgColor.style.display = 'flex'
     }
